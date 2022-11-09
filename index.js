@@ -6,7 +6,6 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 var cors = require("cors");
 const path = require("path");
-const socketio = require("socket.io");
 
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
@@ -62,12 +61,15 @@ const server = app.listen(process.env.PORT || 8800, () =>
 // SOCKET.IO
 // SOCKET.IO
 // SOCKET.IO
-const io = socketio(server);
-// const io = require("socket.io")(server, {
-//   cors: {
-//     origin: process.env.CLIENT_URL,
-//   },
-// });
+const io = require("socket.io")(server, {
+  cors: {
+    origin: process.env.CLIENT_URL,
+    methods: ["GET", "POST"],
+    transports: ["websocket", "polling"],
+    credentials: true,
+  },
+  allowEIO3: true,
+});
 
 let users = [];
 
