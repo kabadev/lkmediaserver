@@ -35,6 +35,7 @@ app.use(morgan("common"));
 app.use(
   cors({
     origin: process.env.CLIENT_URL,
+    transports: ['websocket'],
   })
 );
 
