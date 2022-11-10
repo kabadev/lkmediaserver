@@ -65,10 +65,8 @@ const io = require("socket.io")(server, {
   cors: {
     origin: process.env.CLIENT_URL,
     methods: ["GET", "POST"],
-    transports: ["websocket", "polling"],
-    credentials: true,
-  },
-  allowEIO3: true,
+    transports: ["websocket", "polling"]
+  }
 });
 
 let users = [];
